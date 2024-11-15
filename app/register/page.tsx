@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { IconBrandGoogle } from "@tabler/icons-react";
@@ -49,6 +50,13 @@ export default function Register() {
         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
           Sign up to keep track of your property records.
         </p>
+        <h3 className="mt-4 font-bold text-lg text-neutral-600 dark:text-neutral-300">
+          Have an account?{" "}
+          <Link
+            href="/login"
+            className="text-blue-500 dark:text-cyan-400"
+          >Log in now</Link>
+        </h3>
 
         <form className="my-8" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
