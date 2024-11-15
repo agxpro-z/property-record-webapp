@@ -2,11 +2,50 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Check, ChevronsUpDown } from "lucide-react"
 
+import { Button } from "@/components/ui/button";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+const organizations = [
+  {
+    value: "Org1",
+    label: "Org1",
+  },
+  {
+    value: "Org2",
+    label: "Org2",
+  },
+  {
+    value: "Org3",
+    label: "Org3",
+  },
+  {
+    value: "Org4",
+    label: "Org4",
+  },
+  {
+    value: "Org5",
+    label: "Org5",
+  },
+];
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -15,6 +54,10 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
+
+  const [open, setOpen] = React.useState(false)
+  const [org, setOrg] = React.useState("")
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +74,7 @@ export default function Register() {
         email,
         password,
         confirmPassword,
+        org,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -101,7 +145,7 @@ export default function Register() {
               value={password}
             />
           </LabelInputContainer>
-          <LabelInputContainer className="mb-8">
+          <LabelInputContainer className="mb-4">
             <Label htmlFor="confirmpassword">Confirm password</Label>
             <Input
               id="confirmpassword"
@@ -110,6 +154,54 @@ export default function Register() {
               onChange={e => setConfirmPassword(e.target.value)}
               value={confirmPassword}
             />
+          </LabelInputContainer>
+
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="organization" className="pb-1">Organization</Label>
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className="w-full justify-between mb-8 border-zinc-700 border-[1px] bg-zinc-800"
+                >
+                  {org
+                    ? organizations.find((organization) => organization.value === org)?.label
+                    : "Select organization..."}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[380px] p-0 border-zinc-700">
+                <Command className="bg-zinc-900">
+                  <CommandInput placeholder="Search organization..." />
+                  <CommandList>
+                    <CommandEmpty>No organizations found.</CommandEmpty>
+                    <CommandGroup>
+                      {organizations.map((organization) => (
+                        <CommandItem
+                          key={organization.value}
+                          value={organization.value}
+                          onSelect={(currentValue) => {
+                            setOrg(currentValue === org ? "" : currentValue)
+                            setOpen(false)
+                          }}
+                          className="hover:bg-zinc-950"
+                        >
+                          {organization.label}
+                          <Check
+                            className={cn(
+                              "ml-auto",
+                              org === organization.value ? "opacity-100" : "opacity-0"
+                            )}
+                          />
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
           </LabelInputContainer>
 
           <button
