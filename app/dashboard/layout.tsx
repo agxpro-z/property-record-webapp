@@ -94,7 +94,7 @@ const DashboardComponent = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="flex flex-1">
-        <div className="flex flex-1 pt-0 pb-2 pl-[1px]">
+        <div className="flex flex-1 pt-0 pl-[1px]">
           <div className="pr-12 pt-2 pl-2 overflow-x-auto border-none border-neutral-200 dark:border-neutral-700 bg-white dark:bg-zinc-950 flex flex-col gap-2 flex-1 w-full h-full">
             {children}
           </div>
