@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
   IconArrowLeft,
@@ -35,12 +36,32 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     {
       label: "Logout",
       href: "#",
+      onClick: () => logoutHandler(),
       icon: (
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];
   const [open, setOpen] = useState(false);
+
+  const router = useRouter();
+
+  const logoutHandler = async () => {
+    await fetch(process.env.NEXT_PUBLIC_SERVER_URL + "/api/users/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then((res) => {
+      if (res.ok) {
+        console.log("Logged out");
+        router.push("/login");
+      } else {
+        console.error("Failed to logout");
+      }
+    });
+  };
 
   return (
     <div className="pl-12 h-full w-full">
@@ -55,7 +76,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
               <div className="mt-1 flex flex-col gap-2 h-full">
                 {links.map((link, idx) => (
-                  <SidebarLink key={idx} link={link} />
+                  <SidebarLink key={idx} link={link} onClick={link?.onClick} />
                 ))}
               </div>
             </div>
