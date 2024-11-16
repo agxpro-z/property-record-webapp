@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
@@ -22,7 +23,11 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center">
+    <motion.div className="h-screen w-screen flex flex-col items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <h1 className="text-3xl font-bold">Property Record App</h1>
       <p>Hyperledger Fabric Property Record App</p>
 
@@ -35,7 +40,7 @@ export default function Home() {
           <BottomGradient />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

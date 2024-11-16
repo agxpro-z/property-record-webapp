@@ -1,11 +1,18 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function Profile() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <motion.div
+        className="flex flex-col items-center justify-center h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
         <h1 className="text-4xl font-bold">Profile</h1>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 import { IconBrandGoogle } from "@tabler/icons-react";
 import { Input } from "@/components/ui/input";
@@ -36,7 +37,11 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center">
+    <motion.div className="h-screen w-screen flex flex-col items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border-solid border-[1px] border-zinc-800">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome back
@@ -98,7 +103,7 @@ export default function Login() {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

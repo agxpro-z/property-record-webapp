@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Check, ChevronsUpDown } from "lucide-react"
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { IconBrandGoogle } from "@tabler/icons-react";
@@ -86,7 +87,11 @@ export default function Register() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center">
+    <motion.div className="h-screen w-screen flex flex-col items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border-solid border-[1px] border-zinc-800">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome to Property Record
@@ -213,7 +218,6 @@ export default function Register() {
           </button>
 
           <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-
           <div className="flex flex-col space-y-4">
             <button
               className="border-zinc-800 border-[1.5px] relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -228,8 +232,7 @@ export default function Register() {
           </div>
         </form>
       </div>
-
-    </div>
+    </motion.div>
   );
 }
 
