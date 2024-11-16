@@ -7,6 +7,7 @@ import {
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
+  IconLibrary,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       href: "/dashboard",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
+      label: "All Records",
+      href: "/dashboard/records",
+      icon: (
+        <IconLibrary className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
