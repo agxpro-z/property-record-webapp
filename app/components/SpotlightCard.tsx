@@ -35,7 +35,7 @@ export default function SpotlightCard({ record }: { record: LandRecord }) {
 
         <div className="flex flex-row items-center gap-1 z-50">
           <Edit record={record} />
-          <Delete />
+          <Delete recordId={record.ID} />
         </div>
       </div>
       <div className="text-neutral-200 mt-4 relative z-20">
@@ -107,7 +107,7 @@ export const Edit = ({ record }: { record: LandRecord }) => {
         setIsOpen(false);
         router.refresh();
       } else {
-        console.log("Form not submitted");
+        console.log("Record not updated");
       }
     });
   };
@@ -219,9 +219,30 @@ export const Edit = ({ record }: { record: LandRecord }) => {
   );
 };
 
-export const Delete = () => {
+export const Delete = ({ recordId }: { recordId: string }) => {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = async () => {
+    await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `/api/assets/${recordId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({}),
+    }).then((res) => {
+      if (res.ok) {
+        setIsOpen(false);
+        router.refresh();
+      } else {
+        console.log("Record not deleted");
+      }
+    });
+  };
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={e => setIsOpen(e)}>
       <DialogTrigger asChild>
         <IconTrashX className="hover:text-red-500 hover:scale-105 ease-in-out duration-200 transition" />
       </DialogTrigger>
@@ -234,7 +255,7 @@ export const Delete = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
-            type="submit"
+            onClick={handleSubmit}
             className="shadow-[0_4px_14px_0_rgb(255,50,50,39%)] hover:shadow-[0_6px_20px_rgba(255,50,40,23%)] hover:bg-[#c01f2c] px-8 py-2 bg-[#d11a2a] rounded-md text-white font-light transition duration-200 ease-linear"
           >
             Delete
