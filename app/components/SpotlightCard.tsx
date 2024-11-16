@@ -15,9 +15,9 @@ export default function SpotlightCard({ record }: { record: LandRecord }) {
   console.log(record);
   return (
     <CardSpotlight className="h-96 w-96">
-      <p className="text-xl font-bold font-mono tracking-wide relative z-20 mt-2 text-white">
+      <div className="text-xl font-bold font-mono tracking-wide relative z-20 mt-2 text-white">
         {record.ID}
-      </p>
+      </div>
       <div className="text-neutral-200 mt-4 relative z-20">
         <ul className="list-none mt-2">
           <Step title={record.Owner}>
@@ -29,6 +29,7 @@ export default function SpotlightCard({ record }: { record: LandRecord }) {
           <Step title={`+91-${record.OwnerContact}`}>
             <IconPhone />
           </Step>
+          <hr className="h-px bg-zinc-300 dark:bg-zinc-800 border-0 mt-2 mb-4" />
           <li className="flex gap-2 items-start pb-1">
             <IconRuler />
             <p className="text-white">{record.Size} m&sup2;</p>
@@ -36,6 +37,7 @@ export default function SpotlightCard({ record }: { record: LandRecord }) {
           <Step title={formatCurrency(record.AppraisedValue)}>
             <IconCurrencyRupee />
           </Step>
+          <hr className="h-px bg-zinc-800 dark:bg-zinc-800 border-0 mt-2 mb-4" />
           <Step title={record.Type}>
             <IconHomeRibbon />
           </Step>
