@@ -49,13 +49,6 @@ export default function Login() {
         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
           Sign in to see your property records.
         </p>
-        <h3 className="mt-4 font-bold text-lg text-neutral-600 dark:text-neutral-300">
-          Don&apos;t have an account?{" "}
-          <Link
-            href="/register"
-            className="text-blue-500 dark:text-cyan-400"
-          >Sign Up</Link>
-        </h3>
 
         <form className="my-8" onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
@@ -101,6 +94,13 @@ export default function Login() {
               <BottomGradient />
             </button>
           </div>
+          <div className="mt-4 font-normal text-sm text-center text-neutral-600 dark:text-neutral-300">
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            className="text-blue-500 dark:text-cyan-400"
+          >Sign Up</Link>
+        </div>
         </form>
       </div>
     </motion.div>
