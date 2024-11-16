@@ -33,7 +33,7 @@ export default function Records() {
   return (
     <>
       <motion.div
-        className="flex flex-row h-full flex-wrap justify-center items-center gap-4 py-20 mb-8"
+        className="flex flex-row h-full flex-wrap justify-center gap-4 py-20 mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
