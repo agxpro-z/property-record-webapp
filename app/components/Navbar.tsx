@@ -11,14 +11,15 @@ export default function Navbar() {
   const [active, setActive] = useState<string | null>(null);
   return (
     <div
-      className={`${inter.className} text-sm fixed h-16 w-full backdrop-blur-md bg-transparent z-50 flex flex-row items-center justify-between mx-auto px-16 border-b-[1px] border-zinc-800`}
+      className={`${inter.className} text-sm h-16 w-full backdrop-blur-md bg-transparent z-50 flex flex-row items-center justify-between mx-auto px-16 border-b-[1px] border-zinc-800`}
     >
-      <div className="flex flex-row items-center h-full gap-16" onMouseLeave={() => setActive(null)}>
+      <div className="flex flex-row items-center h-full gap-12" onMouseLeave={() => setActive(null)}>
         <Link className="flex flex-row items-center gap-2" href="/">
           <h1 className={`text-4xl font-bold ${poppins.className}`}>pR</h1>
           <h2 className="text-base font-medium">Property Record</h2>
         </Link>
-        <div className="flex flex-row items-center justify-evenly gap-8 font-medium">
+        <div className="flex flex-row items-center justify-evenly gap-6 font-medium">
+          <Link href="/dashboard">Dashboard</Link>
           <MenuItem setActive={setActive} active={active} item="Services">
             <div className="flex flex-col space-y-4 text-sm">
               <HoveredLink href="/web-dev">Web Development</HoveredLink>
