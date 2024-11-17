@@ -1,3 +1,9 @@
+# Property Record WebApp
+
+Frontend web-app to demonstrate property/land record registration using Hyperledger Fabric.
+
+The web app is only intended to work with the [property-record](https://github.com/agxpro-z/property-record).
+
 ## Getting Started
 
 First, run the development server:
