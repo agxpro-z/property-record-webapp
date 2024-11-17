@@ -9,9 +9,15 @@ export async function middleware(request: NextRequest) {
     },
     credentials: "include",
     cache: "no-store",
+  }).catch((err) => {
+    console.error(err);
+    return NextResponse.redirect(new URL('/login', request.url));
   });
-  const data = await res.json();
-  if (data.status === 'Unauthorized') {
+  const data = await res.json().catch((err) => {
+    console.error(err);
+  });
+
+  if (data?.status === 'Unauthorized') {
     return NextResponse.redirect(new URL('/login', request.url));
   } else {
     return NextResponse.next();
